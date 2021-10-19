@@ -19,8 +19,7 @@ async def func_2(item_id: int):  # +
     for i in goods:
         if i['item_id'] == item_id:
             return i
-        else:
-            return 'искомого значения нет'
+    return 'искомого значения нет'
 
 @app.post("/api/products/new")      #+
 async def func_3(item_id:int,name:str,size:str,length:int):
@@ -37,9 +36,12 @@ async def func_4(item_id:int,name:str = None ,size:str = None,length:int = None)
     global goods
     for i in goods:
         if i['item_id'] == item_id:
-            i['name'] = name
-            i['size'] = size
-            i['length'] = length
+            if name:
+                i['name'] = name
+            if size:
+                i['size'] = size
+            if length:
+                i['length'] = length
             return i
     return 'нет элемента'
 
